@@ -2,7 +2,7 @@ import { SAVE_CONTACT, FILL_CONTACTS, GET_CONTACT, UPDATE_CONTACT, DELETE_CONTAC
 import { IContact } from "../../entities/Contact";
 
 export interface IInitialStateProps {
-  listContacts: IContact[] | [],
+  contacts: IContact[] | [],
   addOk: boolean,
   editOk: boolean,
   viewOk: boolean,
@@ -11,7 +11,7 @@ export interface IInitialStateProps {
 }
 
 const intialState: IInitialStateProps = {
-  listContacts: [],
+  contacts: [],
   addOk: false,
   editOk: false,
   viewOk: false,
@@ -38,7 +38,7 @@ export const contactReducer = (state = intialState, action: IActionProps) => {
         addOk: false,
         editOk: false,
         deleteOk: false,
-        listContacts: action.payload,
+        contacts: action.payload,
         contact: {}
       }
 

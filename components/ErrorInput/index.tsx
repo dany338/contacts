@@ -1,11 +1,9 @@
-import React from "react";
-
+import React from 'react';
+import Box from '@mui/material/Box';
 export interface IErrorInputProps {
   text: string;
 }
 
-const ErrorInput: React.FC<IErrorInputProps> = ({ text }) => {
-  return <span style={{ fontSize: "14px", color: "red" }}>{text}</span>;
-};
+const ErrorInput: React.FC<IErrorInputProps> = ({ text }) => <Box component="span" sx={{ fontSize: "14px", color: "red" }}>{text}</Box>;
 
 export default ErrorInput;

@@ -1,42 +1,55 @@
-import React from "react";
+import React from 'react';
 import Link from "next/link";
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import Avatar from '@mui/material/Avatar';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
 
 export interface IButtonsProps {
+  pages: any;
   isLogged: boolean;
-  close: (e: React.FormEvent<HTMLButtonElement>) => void;
+  close: (e: any) => void;
+  handleOpenUserMenu: (e: any) => void;
+  handleCloseUserMenu: (e: any) => void;
+  anchorElUser: null | HTMLElement;
 }
 
-const Buttons: React.FC<IButtonsProps> = ({ isLogged, close }) => {
+const Buttons: React.FC<IButtonsProps> = ({ pages, isLogged, close, handleOpenUserMenu, handleCloseUserMenu, anchorElUser }) => {
   return (
-    <>
-      {isLogged ? (
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <p className="nav-link m-0">
-              <strong>Hola: eduardo </strong>
-            </p>
-          </li>
-          <li className="nav-item">
-            <button className="mt-1 btn btn-danger btn-sm" onClick={close}>
-              Sign Out
-            </button>
-          </li>
-        </ul>
-      ) : (
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item mr-1">
-            <Link href={"/login"}>
-              <button className="mt-1 btn btn-success btn-sm">Login</button>
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link href={"/crear-cuenta"}>
-              <button className="mt-1 btn btn-info btn-sm">Crear cuenta</button>
-            </Link>
-          </li>
-        </ul>
-      )}
-    </>
+    <Box sx={{ flexGrow: 0 }}>
+      <Tooltip title="Open settings">
+        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+        </IconButton>
+      </Tooltip>
+      <Menu
+        sx={{ mt: '45px' }}
+        id="menu-appbar"
+        anchorEl={anchorElUser}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        keepMounted
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        open={Boolean(anchorElUser)}
+        onClose={handleCloseUserMenu}
+      >
+        {pages.filter((item: any) => item.isLogged === isLogged).map((page: any, index: any) => (
+          <Link href={page.route} key={index}>
+            <MenuItem onClick={close}>
+              <Typography textAlign="center">{page.name}</Typography>
+            </MenuItem>
+          </Link>
+        ))}
+      </Menu>
+    </Box>
   );
 };
 

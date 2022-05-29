@@ -25,6 +25,13 @@ export const validateCreateContact = (valores: any) => {
   return errores;
 };
 
+export const validateSearch = (valores: any) => {
+  let errores = {};
+  validateQuery(valores.query, errores);
+
+  return errores;
+};
+
 const validateEmail = (email: any, errores: any) => {
   if (!email) {
     errores.email = "El email es obligatorio";
@@ -42,6 +49,12 @@ const validatePassword = (password: any, errores: any) => {
     if (password.length < 6) {
       errores.password = "La contraseña debe tener al menos 6 caracteres";
     }
+  }
+};
+
+const validateQuery = (query: any, errores: any) => {
+  if (!query) {
+    errores.query = "The Query is require";
   }
 };
 

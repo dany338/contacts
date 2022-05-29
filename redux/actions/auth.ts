@@ -60,7 +60,7 @@ export const initSession = (email: string, password: string) => {
   };
 };
 
-export const cerrarSesion = () => {
+export const closeSesion = () => {
   return async (dispatch: any) => {
     try {
       await firebase.auth().signOut();

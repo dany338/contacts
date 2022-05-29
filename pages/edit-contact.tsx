@@ -8,7 +8,7 @@ import useValidation from '../hooks/useValidation';
 import { validateCreateContact } from '../utils/validations';
 import Layout from '../Layout';
 import Form from "../components/Form";
-import { editContact } from "../redux/actions/contact";
+import { editContact, obtainContact } from '../redux/actions/contact';
 import Contact from '../entities/Contact';
 
 const intialState = {
@@ -33,7 +33,7 @@ const EditContact = () => {
       <Box
         sx={{
           width: '100%',
-          height: '140px',
+          height: 'auto',
           color: '#fff',
           '& > .MuiBox-root > .MuiBox-root': {
             p: 1,
@@ -57,6 +57,7 @@ const EditContact = () => {
           <Box sx={{ gridArea: 'header', bgcolor: 'primary.main' }}>Create Contact</Box>
           <Box sx={{ gridArea: 'footer', bgcolor: 'warning.dark' }}>
             <Form
+              contact={contact}
               edit={true}
               editContact={(contact: Contact) => dispatch(editContact(contact))}
             />
@@ -68,3 +69,17 @@ const EditContact = () => {
 };
 
 export default EditContact;
+
+export async function getServerSideProps(context: any) {
+  const { params } = context;
+  console.log("el parametro es: ", params);
+  const { id } = params;
+  const contact = await obtainContact(id);
+
+  return {
+    props: {
+      contact,
+    },
+  };
+
+}

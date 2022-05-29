@@ -18,7 +18,6 @@ export interface ICardContactProps {
 
 const CardContact: React.FC<ICardContactProps> = ({ contact }) => {
   const { id, firstName, lastName, email, phone, createdAt, updatedAt } = contact;
-
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -37,7 +36,7 @@ const CardContact: React.FC<ICardContactProps> = ({ contact }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Link href={"contacts/[id]"} as={`cursos/${id}`}>
+        <Link href={"contacts/[id]"} as={`contacts/${id}`}>
           <Button size="small">Learn More</Button>
         </Link>
       </CardActions>
