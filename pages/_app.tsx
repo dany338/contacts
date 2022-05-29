@@ -6,11 +6,9 @@ import { store } from '../redux/store';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <FirebaseContext.Provider value={{ firebase }}>
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
-    </FirebaseContext.Provider>
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
   );
 }
 
