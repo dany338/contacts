@@ -10,7 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Trabajador from '../../assets/img/trabajador.png';
+import Coworker from '../../assets/img/trabajador.png';
 import Layout from "../../Layout";
 import useContact from "../../hooks/useContact";
 import firebase from "../../firebase";
@@ -31,7 +31,7 @@ const Contacts: React.FC<IContactProps> = ({ contact }) => {
         <CardMedia
           component="img"
           height="140"
-          image={(Trabajador as any)}
+          image={(Coworker as any)}
           alt={firstName}
         />
         <CardContent>

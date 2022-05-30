@@ -75,7 +75,8 @@ const CreateAccount = () => {
                   id="lastName"
                   name="lastName"
                   label="Last Name"
-                  defaultValue={valores.name}
+                  defaultValue={intialState.name}
+                  value={valores.name}
                   variant="standard"
                   onChange={handleChange}
                 />
@@ -90,7 +91,8 @@ const CreateAccount = () => {
                   id="email"
                   name="email"
                   label="Email"
-                  defaultValue={valores.email}
+                  defaultValue={intialState.email}
+                  value={valores.email}
                   variant="standard"
                   onChange={handleChange}
                 />
@@ -105,7 +107,8 @@ const CreateAccount = () => {
                   id="email"
                   name="email"
                   label="Email"
-                  defaultValue={valores.password}
+                  defaultValue={intialState.password}
+                  value={valores.password}
                   variant="standard"
                   onChange={handleChange}
                 />

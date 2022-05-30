@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
+
 export interface IErrorInputProps {
   text: string;
 }

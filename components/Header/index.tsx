@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
+import Router from 'next/router';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -27,6 +28,7 @@ const pages = [
 
 const Header = () => {
   const { auth: { isAuth } }: any = useSelector((state) => state);
+  const [localPath, setLocalPath] = useState<string | unknown>("");
 
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -49,6 +51,15 @@ const Header = () => {
   useEffect(() => {
     console.log(isAuth);
   }, [isAuth]);
+
+
+  const classPath = (path: string) => {
+    return `nav-item ${localPath === path ? "active" : ""}`;
+  };
+
+  useEffect(() => {
+    setLocalPath(Router?.router?.asPath);
+  }, []);
 
   return (
     <AppBar position="static">
@@ -103,7 +114,7 @@ const Header = () => {
               }}
             >
               {pages.filter((item: any) => item.isLogged === isAuth).map((page: any, index: any) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={`header-${index}`} onClick={handleCloseNavMenu} className={classPath(page.route)}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -129,7 +140,11 @@ const Header = () => {
             LOGO
           </Typography>
           <Search />
-          <Navegacion pages={pages} isLogged={isAuth} />
+          <Navegacion
+            pages={pages}
+            isLogged={isAuth}
+            classPath={(path: string) => classPath(path)}
+          />
           <Buttons
             pages={pages}
             isLogged={isAuth}
@@ -137,6 +152,7 @@ const Header = () => {
             anchorElUser={anchorElUser}
             handleOpenUserMenu={handleOpenUserMenu}
             handleCloseUserMenu={handleCloseUserMenu}
+            classPath={(path: string) => classPath(path)}
           />
         </Toolbar>
       </Container>

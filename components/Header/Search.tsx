@@ -36,26 +36,30 @@ const Search: React.FC<ISearchProps> = () => {
       }}
     >
       <Stack spacing={2} direction="row">
-        <TextField
-          id="query"
-          name='query'
-          label="Search by contacts"
-          variant="standard"
-          onChange={handleChange}
-          value={valores.query}
-        />
-        {errors.query && <ErrorInput text={errors.query} />}
-        {/* <Button variant="text" className="btn btn-outline-success my-2 my-sm-0" type="submit">
-          Search
-        </Button> */}
-        <IconButton
-          color="primary"
-          aria-label="upload picture"
-          component="span"
-          onClick={() => handleSubmit()}
-        >
-          <SearchIcon />
-        </IconButton>
+        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+          <TextField
+            error={!!errors.query}
+            id="query"
+            name="query"
+            label="Search by first name"
+            defaultValue={intialState.query}
+            value={valores.query}
+            variant="standard"
+            onChange={handleChange}
+          />
+          {errors.query && <ErrorInput text={errors.query} />}
+          {/* <Button variant="text" className="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search
+          </Button> */}
+          <IconButton
+            color="primary"
+            aria-label="upload picture"
+            component="span"
+            onClick={() => handleSubmit()}
+          >
+            <SearchIcon />
+          </IconButton>
+        </Box>
       </Stack>
     </Box>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Container from '@mui/material/Container';
 import Header from "../components/Header";
 
 export interface ILayoutProps {
@@ -15,7 +16,7 @@ const Layout: React.FC<ILayoutProps> = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="container">{children}</main>
+      <Container maxWidth="sm">{children}</Container>
     </>
   );
 };

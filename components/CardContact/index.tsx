@@ -18,6 +18,7 @@ export interface ICardContactProps {
 
 const CardContact: React.FC<ICardContactProps> = ({ contact }) => {
   const { id, firstName, lastName, email, phone, createdAt, updatedAt } = contact;
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
