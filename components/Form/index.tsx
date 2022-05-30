@@ -91,7 +91,14 @@ const Form: React.FC<IFormProps> = ({
         },
       }}
     >
-      <form className='row g-3' onSubmit={handleSubmit}>
+      <Box
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1, width: '100%' },
+          display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}
+        onSubmit={handleSubmit}
+      >
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           <Grid item xs={2} sm={4} md={4}>
             <Item>
@@ -107,7 +114,6 @@ const Form: React.FC<IFormProps> = ({
                       id="firstName"
                       name="firstName"
                       label="First Name"
-                      defaultValue={intialState.firstName}
                       value={valores.firstName}
                       variant="standard"
                       onChange={handleChange}
@@ -130,7 +136,6 @@ const Form: React.FC<IFormProps> = ({
                       id="lastName"
                       name="lastName"
                       label="Last Name"
-                      defaultValue={intialState.lastName}
                       value={valores.lastName}
                       variant="standard"
                       onChange={handleChange}
@@ -153,7 +158,6 @@ const Form: React.FC<IFormProps> = ({
                       id="email"
                       name="email"
                       label="Email"
-                      defaultValue={intialState.email}
                       value={valores.email}
                       variant="standard"
                       onChange={handleChange}
@@ -176,7 +180,6 @@ const Form: React.FC<IFormProps> = ({
                       id="phone"
                       name="phone"
                       label="Phone"
-                      defaultValue={intialState.phone}
                       value={valores.phone}
                       variant="standard"
                       onChange={handleChange}
@@ -204,7 +207,7 @@ const Form: React.FC<IFormProps> = ({
             </Item>
           </Grid>
         </Grid>
-      </form>
+      </Box>
     </Box>
   );
 };

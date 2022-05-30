@@ -31,7 +31,7 @@ const Contacts: React.FC<IContactProps> = ({ contact }) => {
         <CardMedia
           component="img"
           height="140"
-          image={(Coworker as any)}
+          src='/trabajador.png'
           alt={firstName}
         />
         <CardContent>

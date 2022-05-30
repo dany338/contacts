@@ -32,17 +32,19 @@ const Search: React.FC<ISearchProps> = () => {
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
+        '& > :not(style)': { m: 1, width: '50ch' },
       }}
     >
       <Stack spacing={2} direction="row">
-        <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+        <Box sx={{ display: 'flex', alignItems: 'flex-end', width: '100%' }}>
           <TextField
+            sx={{
+              width: '100%',
+            }}
             error={!!errors.query}
             id="query"
             name="query"
             label="Search by first name"
-            defaultValue={intialState.query}
             value={valores.query}
             variant="standard"
             onChange={handleChange}
@@ -52,6 +54,9 @@ const Search: React.FC<ISearchProps> = () => {
             Search
           </Button> */}
           <IconButton
+            sx={{
+              color: 'white',
+            }}
             color="primary"
             aria-label="upload picture"
             component="span"

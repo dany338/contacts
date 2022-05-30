@@ -115,7 +115,7 @@ const Header = () => {
             >
               {pages.filter((item: any) => item.isLogged === isAuth).map((page: any, index: any) => (
                 <MenuItem key={`header-${index}`} onClick={handleCloseNavMenu} className={classPath(page.route)}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>

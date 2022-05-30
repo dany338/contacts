@@ -7,6 +7,7 @@ import Menu from '@mui/material/Menu';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import Coworker from '../../assets/img/trabajador.png';
 
 export interface IButtonsProps {
   pages: any;
@@ -22,7 +23,7 @@ const Buttons: React.FC<IButtonsProps> = ({ pages, isLogged, close, handleOpenUs
   <Box sx={{ flexGrow: 0 }}>
     <Tooltip title="Open settings">
       <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+        <Avatar alt="Contact" src='/trabajador.png' />
       </IconButton>
     </Tooltip>
     <Menu

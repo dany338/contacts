@@ -2,14 +2,14 @@ import firebase from "../../firebase";
 import { USER_CREATE, UPDATE_IS_AUTH, LOGIN, LOGOUT } from '../types/auth';
 import Cookies from "js-cookie";
 
-export const createAccount = async (nombre: string, email: string, password: string) => {
+export const createAccount = async (name: string, email: string, password: string) => {
   return async (dispatch: any) => {
     const newUser = await firebase.auth.createUserWithEmailAndPassword(
       email,
       password
     );
 
-    await newUser.user.updateProfile({ displayName: nombre });
+    await newUser.user.updateProfile({ displayName: name });
 
     Cookies.set("userInfo", JSON.stringify(newUser.user));
 

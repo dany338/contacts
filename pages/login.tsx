@@ -13,10 +13,9 @@ import Layout from "../Layout";
 import useValidation from "../hooks/useValidation";
 import { validateCreateAccount } from "../utils/validations";
 import ErrorInput from "../components/ErrorInput";
-import { createAccount } from "../redux/actions/auth";
+import { initSession } from "../redux/actions/auth";
 
 const intialState = {
-  name: "",
   email: "",
   password: "",
 };
@@ -33,13 +32,13 @@ const CreateAccount = () => {
   const [valores, errors, handleChange, handleSubmit] = useValidation(
     intialState,
     validateCreateAccount,
-    () => signUp()
+    () => signIn()
   );
 
 
-  const signUp = () => {
-    const { nombre, email, password } = valores;
-    createAccount(nombre, email, password);
+  const signIn = () => {
+    const { email, password } = valores;
+    initSession(email, password);
     Router.push("/");
   };
 
@@ -63,7 +62,7 @@ const CreateAccount = () => {
           component="h1"
           sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000'}}
         >
-          crear cuenta
+          Login
         </Box>
         <Box
           component="form"
@@ -75,21 +74,6 @@ const CreateAccount = () => {
         >
           <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
             <Grid item xs={2} sm={4} md={4}>
-              <Item>
-                <FormGroup>
-                  <FormLabel htmlFor='name' component="label">Name</FormLabel>
-                  <TextField
-                    error={!!errors.name}
-                    id="lastName"
-                    name="lastName"
-                    label="Last Name"
-                    value={valores.name}
-                    variant="standard"
-                    onChange={handleChange}
-                  />
-                  {errors.name && <ErrorInput text={errors.name} />}
-                </FormGroup>
-              </Item>
               <Item>
                 <FormGroup>
                   <FormLabel htmlFor='email' component="label">Email</FormLabel>
@@ -123,7 +107,7 @@ const CreateAccount = () => {
               <Item>
                 <FormGroup>
                   <Button
-                    sx={{ my: 2, color: 'white', display: 'block' }}
+                    sx={{ my: 2, color: 'black', display: 'block' }}
                     type='submit'
                   >
                     Create Account{" "}
