@@ -3,10 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import Router from 'next/router';
 import { experimentalStyled as styled } from '@mui/material/styles';
+import FormLabel from '@mui/material/FormLabel';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import ErrorInput from '../ErrorInput';
 import useValidation from '../../hooks/useValidation';
 import { validateCreateAccount } from '../../utils/validations';
@@ -92,85 +94,98 @@ const Form: React.FC<IFormProps> = ({
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           <Grid item xs={2} sm={4} md={4}>
             <Item>
-              <div className='col md-6'>
-                <label htmlFor='dish' className='form-label'>
-                  First Name
-                </label>
-                {view ? (
-                  <label htmlFor='dish' className='form-label'>
-                    <b>{' '}{contact.firstName}</b>
-                  </label>
-                ) : (
-                  <>
-                    <input type='text' className='form-control' name='nombre' onChange={handleChange} value={valores.firstName} />
-                    {errors.firstName && <ErrorInput text={errors.firstName} />}
-                  </>
-                )}
-              </div>
+              <FormLabel htmlFor='firstName' component="legend">First Name</FormLabel>
+              {view ? (
+                <FormLabel htmlFor='firstName' component="legend"><b>{' '}{contact.firstName}</b></FormLabel>
+              ) : (
+                <>
+                  {/* <input type='text' className='form-control' name='firstName' onChange={handleChange} value={valores.firstName} /> */}
+                  <TextField
+                    error={!!errors.firstName}
+                    id="firstName"
+                    name="firstName"
+                    label="First Name"
+                    defaultValue={valores.firstName}
+                    variant="standard"
+                    onChange={handleChange}
+                  />
+                  {errors.firstName && <ErrorInput text={errors.firstName} />}
+                </>
+              )}
             </Item>
             <Item>
-              <div className='col md-6'>
-                <label htmlFor='price' className='form-label'>
-                  Last Name
-                </label>
-                {view ? (
-                  <label htmlFor='price' className='form-label'>
-                    <b>{' '}{contact.lastName}</b>
-                  </label>
-                ) : (
-                  <>
-                    <input type='number' className='form-control' name='precio' onChange={handleChange} value={valores.lastName} />
-                    <ErrorInput text={errors.lastName} />
-                  </>
-                )}
-              </div>
+              <FormLabel htmlFor='lastName' component="legend">Last Name</FormLabel>
+              {view ? (
+                <FormLabel htmlFor='lastName' component="legend"><b>{' '}{contact.lastName}</b></FormLabel>
+              ) : (
+                <>
+                  {/* <input type='text' className='form-control' name='lastName' onChange={handleChange} value={valores.lastName} /> */}
+                  <TextField
+                    error={!!errors.lastName}
+                    id="lastName"
+                    name="lastName"
+                    label="Last Name"
+                    defaultValue={valores.lastName}
+                    variant="standard"
+                    onChange={handleChange}
+                  />
+                  {errors.lastName && <ErrorInput text={errors.lastName} />}
+                </>
+              )}
             </Item>
             <Item>
-              <div className='col md-6'>
-                <label htmlFor='email' className='form-label'>
-                  Nombre del plato
-                </label>
-                {view ? (
-                  <label htmlFor='email' className='form-label'>
-                    <b>{' '}{contact.email}</b>
-                  </label>
-                ) : (
-                  <>
-                    <input type='text' className='form-control' name='nombre' onChange={handleChange} value={valores.email} />
-                    <ErrorInput text={errors.email} />
-                  </>
-                )}
-              </div>
+              <FormLabel htmlFor='email' component="legend">Email</FormLabel>
+              {view ? (
+                <FormLabel htmlFor='email' component="legend"><b>{' '}{contact.email}</b></FormLabel>
+              ) : (
+                <>
+                  {/* <input type='text' className='form-control' name='email' onChange={handleChange} value={valores.email} /> */}
+                  <TextField
+                    error={!!errors.email}
+                    id="email"
+                    name="email"
+                    label="Email"
+                    defaultValue={valores.email}
+                    variant="standard"
+                    onChange={handleChange}
+                  />
+                  {errors.email && <ErrorInput text={errors.email} />}
+                </>
+              )}
             </Item>
             <Item>
-              <div className='col md-6'>
-                <label htmlFor='phone' className='form-label'>
-                  Phone
-                </label>
-                {view ? (
-                  <label htmlFor='phone' className='form-label'>
-                    <b>{' '}{contact.phone}</b>
-                  </label>
-                ) : (
-                  <>
-                    <input type='number' className='form-control' name='precio' onChange={handleChange} value={valores.phone} />
-                    <ErrorInput text={errors.phone} />
-                  </>
-                )}
-              </div>
+              <FormLabel htmlFor='phone' component="legend">Phone</FormLabel>
+              {view ? (
+                <FormLabel htmlFor='phone' component="legend"><b>{' '}{contact.phone}</b></FormLabel>
+              ) : (
+                <>
+                  {/* <input type='number' className='form-control' name='phone' onChange={handleChange} value={valores.phone} /> */}
+                  <TextField
+                    error={!!errors.phone}
+                    id="phone"
+                    name="phone"
+                    label="Phone"
+                    defaultValue={valores.phone}
+                    variant="standard"
+                    onChange={handleChange}
+                  />
+                  {errors.phone && <ErrorInput text={errors.phone} />}
+                </>
+              )}
             </Item>
             <Item>
-              <div className='col-6'>
-                {!view ? (
-                  <button type='submit' className='btn btn-primary'>
-                    {edit ? 'Edit Contact' : 'Create Contact'}
-                  </button>
-                ) : (
-                  <Link href={"/"} as={`/`}>
-                    Cerrar
-                  </Link>
-                )}
-              </div>
+              {!view ? (
+                <Button
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  type='submit'
+                >
+                  {edit ? 'Edit Contact' : 'Create Contact'}
+                </Button>
+              ) : (
+                <Link href={"/"} as={`/`}>
+                  Cerrar
+                </Link>
+              )}
             </Item>
           </Grid>
         </Grid>

@@ -10,7 +10,7 @@ export const validateCreateAccount = (valores: any) => {
   let errores = {};
   validateEmail(valores.email, errores);
   validatePassword(valores.password, errores);
-  validateName(valores.nombre, errores);
+  validateName(valores.name, errores);
 
   return errores;
 };
@@ -58,9 +58,9 @@ const validateQuery = (query: any, errores: any) => {
   }
 };
 
-const validateName = (nombre: any, errores: any) => {
-  if (!nombre) {
-    errores.nombre = " El nombre es obligatorio";
+const validateName = (name: any, errores: any) => {
+  if (!name) {
+    errores.name = 'The Name is required';
   }
 };
 

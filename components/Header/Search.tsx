@@ -25,7 +25,7 @@ const Search: React.FC<ISearchProps> = () => {
   );
 
   const onSearchContact = async () => {
-    obtainContacts(10, 1, null, 'firstName_contains', valores.query);
+    await obtainContacts(10, 1, null, 'firstName_contains', valores.query);
   }
 
   return (

@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import Botones from "./Buttons";
+import Buttons from "./Buttons";
 import Search from "./Search";
 import Navegacion from "./Navegacion";
 import { closeSesion } from '../../redux/actions/auth';
@@ -130,7 +130,7 @@ const Header = () => {
           </Typography>
           <Search />
           <Navegacion pages={pages} isLogged={isAuth} />
-          <Botones
+          <Buttons
             pages={pages}
             isLogged={isAuth}
             close={() => closeSesion()}

@@ -5,6 +5,10 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import FormLabel from '@mui/material/FormLabel';
+import FormGroup from '@mui/material/FormGroup';
+import Button from '@mui/material/Button';
 import Layout from "../Layout";
 import useValidation from "../hooks/useValidation";
 import { validateCreateAccount } from "../utils/validations";
@@ -12,7 +16,7 @@ import ErrorInput from "../components/ErrorInput";
 import { createAccount } from "../redux/actions/auth";
 
 const intialState = {
-  nombre: "",
+  name: "",
   email: "",
   password: "",
 };
@@ -26,7 +30,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const CreateAccount = () => {
-  const [valores, errores, handleChange, handleSubmit] = useValidation(
+  const [valores, errors, handleChange, handleSubmit] = useValidation(
     intialState,
     validateCreateAccount,
     () => crearCuenta()
@@ -64,50 +68,59 @@ const CreateAccount = () => {
         <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
           <Grid item xs={2} sm={4} md={4}>
             <Item>
-                <div className="form-group">
-                  <label htmlFor="exampleInputEmail1">Nombre</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="nombre"
-                    onChange={handleChange}
-                    value={valores.nombre}
-                  />
-                  {errores.nombre && <ErrorInput text={errores.nombre} />}
-                </div>
+              <FormGroup>
+                <FormLabel htmlFor='name' component="label">Name</FormLabel>
+                <TextField
+                  error={!!errors.name}
+                  id="lastName"
+                  name="lastName"
+                  label="Last Name"
+                  defaultValue={valores.name}
+                  variant="standard"
+                  onChange={handleChange}
+                />
+                {errors.name && <ErrorInput text={errors.name} />}
+              </FormGroup>
             </Item>
             <Item>
-              <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Correo</label>
-                <input
-                  type="email"
-                  className="form-control"
+              <FormGroup>
+                <FormLabel htmlFor='email' component="label">Email</FormLabel>
+                <TextField
+                  error={!!errors.email}
+                  id="email"
                   name="email"
+                  label="Email"
+                  defaultValue={valores.email}
+                  variant="standard"
                   onChange={handleChange}
-                  value={valores.email}
                 />
-                {errores.email && <ErrorInput text={errores.email} />}
-              </div>
+                {errors.email && <ErrorInput text={errors.email} />}
+              </FormGroup>
             </Item>
             <Item>
-              <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Contraseña</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  name="password"
+              <FormGroup>
+                <FormLabel htmlFor='email' component="label">Password</FormLabel>
+                <TextField
+                  error={!!errors.password}
+                  id="email"
+                  name="email"
+                  label="Email"
+                  defaultValue={valores.password}
+                  variant="standard"
                   onChange={handleChange}
-                  value={valores.password}
                 />
-                {errores.password && <ErrorInput text={errores.password} />}
-              </div>
+                {errors.password && <ErrorInput text={errors.password} />}
+              </FormGroup>
             </Item>
             <Item>
-              <div className="form-group">
-                <button type="submit" className="btn btn-primary">
-                  crear cuenta{" "}
-                </button>
-              </div>
+              <FormGroup>
+                <Button
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  type='submit'
+                >
+                  Create Account{" "}
+                </Button>
+              </FormGroup>
             </Item>
           </Grid>
         </Grid>
