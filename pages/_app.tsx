@@ -1,4 +1,4 @@
-import firebase, { FirebaseContext } from '../firebase';
+import firebase from '../firebase';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 import '../styles/globals.css';
