@@ -71,7 +71,7 @@ export const closeSesion = () => {
   };
 };
 
-const logout = () => {
+export const logout = () => {
   return {
     type: LOGOUT,
   };
