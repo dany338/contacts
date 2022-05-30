@@ -76,3 +76,5 @@ const logout = () => {
     type: LOGOUT,
   };
 };
+
+export {}
