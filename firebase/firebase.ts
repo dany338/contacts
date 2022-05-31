@@ -3,7 +3,7 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import "firebase/compat/storage";
 
-import firebaseConfig from "./config";
+import firebaseConfig from "../firebase/config";
 
 export interface IFirebase {
   auth: number;
