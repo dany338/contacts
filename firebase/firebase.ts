@@ -30,4 +30,3 @@ class Firebase implements IFirebase {
 const firebase = new Firebase();
 
 export default firebase;
-export {}
