@@ -27,6 +27,6 @@ class Firebase implements IFirebase {
   }
 }
 
-const firebase = new Firebase();
+export const firebase = new Firebase();
 
 export default firebase;
