@@ -64,15 +64,11 @@ export const closeSesion = () => {
   return async (dispatch: any) => {
     try {
       await firebase.auth().signOut();
-      dispatch(logout());
+      dispatch({
+        type: LOGOUT,
+      });
     } catch (error) {
       console.log(error);
     }
-  };
-};
-
-export const logout = () => {
-  return {
-    type: LOGOUT,
   };
 };
