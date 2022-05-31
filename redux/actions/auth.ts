@@ -1,4 +1,4 @@
-import firebase, {} from "../../firebase";
+import firebase from "../../firebase";
 import { USER_CREATE, UPDATE_IS_AUTH, LOGIN, LOGOUT } from '../types/auth';
 import Cookies from "js-cookie";
 
