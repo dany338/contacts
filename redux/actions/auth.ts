@@ -1,4 +1,3 @@
-export {};
 import Cookies from "js-cookie";
 import firebase from "../../firebase";
 import { USER_CREATE, UPDATE_IS_AUTH, LOGIN, LOGOUT } from '../types/auth';

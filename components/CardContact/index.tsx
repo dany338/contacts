@@ -20,20 +20,35 @@ const CardContact: React.FC<ICardContactProps> = ({ contact }) => {
   const { id, firstName, lastName, email, phone, createdAt, updatedAt } = contact;
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card
+      sx={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        margin: '1rem',
+      }}
+    >
       <CardMedia
         component="img"
-        height="140"
-        image={(Trabajador as any)}
+        image='/trabajador.png'
         alt={firstName}
+        sx={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          display: 'flex',
+          width: '20%',
+          height: '20%',
+          margin: '1rem',
+        }}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {firstName}{' '}{lastName}{' - '}{email}{' - '}{phone}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Created ago{" "}{formatDistanceToNow(new Date(createdAt), { locale: es })}
-          Updated ago{" "}{formatDistanceToNow(new Date(updatedAt), { locale: es })}
+          <b>Created ago</b>{" "}{formatDistanceToNow(new Date(createdAt), { locale: es })}{" "}
+          <b>Updated ago</b>{" "}{formatDistanceToNow(new Date(updatedAt), { locale: es })}
         </Typography>
       </CardContent>
       <CardActions>

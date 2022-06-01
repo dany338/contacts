@@ -41,4 +41,19 @@ class Contact implements IContact {
   }
 }
 
+export interface IContactResults {
+  count: number;
+  perPage: number;
+  currentPage: number;
+  totalPages: number;
+  results: Contact;
+}
+
+export interface IPagination {
+  count: number;
+  perPage: number;
+  currentPage: number;
+  totalPages: number;
+}
+
 export default Contact;

@@ -47,6 +47,7 @@ const CreateAccount = () => {
       <Box
         sx={{
           flexGrow: 1,
+          justifyContent: 'center',
           width: '100%',
           height: 'auto',
           color: '#fff',
@@ -72,7 +73,7 @@ const CreateAccount = () => {
           }}
           onSubmit={handleSubmit}
         >
-          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+          <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ justifyContent: 'center' }}>
             <Grid item xs={2} sm={4} md={4}>
               <Item>
                 <FormGroup>

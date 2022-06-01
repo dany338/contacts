@@ -1,22 +1,24 @@
-import { SAVE_CONTACT, FILL_CONTACTS, GET_CONTACT, UPDATE_CONTACT, DELETE_CONTACT } from "../types/contact";
+import { SAVE_CONTACT, FILL_CONTACTS, GET_CONTACT, UPDATE_CONTACT, DELETE_CONTACT, SET_LOADING } from "../types/contact";
 import { IContact } from "../../entities/Contact";
 
 export interface IInitialStateProps {
+  loading: boolean;
   contacts: IContact[] | [],
   addOk: boolean,
   editOk: boolean,
   viewOk: boolean,
   deleteOk: boolean,
-  contact: object | IContact
+  contact: null | IContact
 }
 
 const intialState: IInitialStateProps = {
+  loading: false,
   contacts: [],
   addOk: false,
   editOk: false,
   viewOk: false,
   deleteOk: false,
-  contact: {}
+  contact: null
 }
 
 export interface IActionProps {
@@ -39,7 +41,7 @@ export const contactReducer = (state = intialState, action: IActionProps) => {
         editOk: false,
         deleteOk: false,
         contacts: action.payload,
-        contact: {}
+        contact: null
       }
 
     case GET_CONTACT:
@@ -58,6 +60,12 @@ export const contactReducer = (state = intialState, action: IActionProps) => {
       return {
         ...state,
         deleteOk: action.payload
+      }
+
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload
       }
 
     default:

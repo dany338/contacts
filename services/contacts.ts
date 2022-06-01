@@ -1,8 +1,8 @@
 import api from './api';
-import Contact, { IContactCreate } from '../entities/Contact';
+import Contact, { IContactCreate, IContactResults } from '../entities/Contact';
 import { CONTACTS } from '../constants/backend';
 
-export const getContacts = (perPage: number, page: number, _sort: string | null, field: string | null, search: string | null): Promise<Contact[] | unknown> => new Promise( async (resolve, reject) => {
+export const getContacts = (perPage: number, page: number, _sort: string | null, field: string | null, search: string | null): Promise<IContactResults | unknown> => new Promise( async (resolve, reject) => {
   try {
     let params = { perPage, page };
     if (_sort) {
@@ -19,10 +19,11 @@ export const getContacts = (perPage: number, page: number, _sort: string | null,
     }
     const response = await api.get(CONTACTS, { params });
     if (response.status === 200) {
-      const newContacts = response.data.map((contact: Contact) => new Contact(contact));
-      resolve(newContacts);
+      // const newContacts = response.data.results.map((contact: Contact) => new Contact(contact));
+      resolve(response.data);
     }
   } catch (error) {
+    console.log(error);
     reject(error);
   }
 });
@@ -30,6 +31,7 @@ export const getContacts = (perPage: number, page: number, _sort: string | null,
 export const getContact = (id: string): Promise<Contact | unknown> => new Promise( async (resolve, reject) => {
   try {
     const response = await api.get(`${CONTACTS}/${id}`);
+    
     if (response.status === 200) {
       const contact = response.data;
       resolve(contact);
