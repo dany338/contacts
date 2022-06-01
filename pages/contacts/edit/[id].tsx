@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import Router from 'next/router';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-
-import useValidation from '../hooks/useValidation';
-import { validateCreateContact } from '../utils/validations';
-import Layout from '../Layout';
-import Form from "../components/Form";
-import { editContact, obtainContact } from '../redux/actions/contact';
-import Contact from '../entities/Contact';
+import useValidation from '../../../hooks/useValidation';
+import { validateCreateContact } from '../../../utils/validations';
+import Layout from '../../../Layout';
+import Form from "../../../components/Form";
+import { editContact, obtainContact } from '../../../redux/actions/contact';
+import Contact from '../../../entities/Contact';
+import useContact from "../../../hooks/useContact";
 
 const intialState = {
   firstName: "",
@@ -18,15 +18,14 @@ const intialState = {
   phone: "",
 };
 
-const EditContact = () => {
-  let dispatch: any = useDispatch();
-  const { contact: { editOk, contact } }: any = useSelector((state) => state);
+export interface IContactProps {
+  id: string;
+}
 
-  useEffect(() => {
-    if (editOk) {
-      Router.push("/");
-    }
-  }, [editOk]);
+const EditContact: React.FC<IContactProps> = ({ id }) => {
+  const dispatch = useDispatch();
+  const [ contact ]: any = useContact(id);
+  if (!contact) return null;
 
   return (
     <Layout>
@@ -55,11 +54,13 @@ const EditContact = () => {
           }}
         >
           <Box sx={{ gridArea: 'header', bgcolor: 'primary.main' }}>Create Contact</Box>
-          <Box sx={{ gridArea: 'footer', bgcolor: 'warning.dark' }}>
+          <Box 
+            sx={{ gridArea: 'footer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
             <Form
               contact={contact}
               edit={true}
-              editContact={(contact: Contact) => dispatch(editContact(contact))}
+              editContact={(contact: Contact) => dispatch<any>(editContact(contact))}
             />
           </Box>
         </Box>
@@ -72,13 +73,12 @@ export default EditContact;
 
 export async function getServerSideProps(context: any) {
   const { params } = context;
-  console.log("el parametro es: ", params);
   const { id } = params;
-  const contact = await obtainContact(id);
-
+  console.log('🚀 ~ file: [id].tsx ~ line 61 ~ getServerSideProps ~ id', id)
+  
   return {
     props: {
-      contact,
+      id,
     },
   };
 

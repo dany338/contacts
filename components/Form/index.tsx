@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import FormGroup from '@mui/material/FormGroup';
 import ErrorInput from '../ErrorInput';
 import useValidation from '../../hooks/useValidation';
-import { validateCreateAccount } from '../../utils/validations';
+import { validateCreateContact } from '../../utils/validations';
 import Contact, { IContact, IContactCreate }  from '../../entities/Contact';
 
 const intialState = {
@@ -48,12 +48,13 @@ const Form: React.FC<IFormProps> = ({
   view = false
 }) => {
   const [valores, errors, handleChange, handleSubmit] = useValidation(
-    intialState,
-    validateCreateAccount,
+    edit ? contact : intialState,
+    validateCreateContact,
     () => crudContact()
   );
 
   const crudContact = () => {
+    console.log(valores);
     if (edit) {
       const newContact: IContact = {
         ...valores,
@@ -89,17 +90,18 @@ const Form: React.FC<IFormProps> = ({
           fontSize: '0.875rem',
           fontWeight: '700',
         },
+        display: 'flex', alignItems: 'center', justifyContent: 'center'
       }}
     >
       <Box
         component="form"
         sx={{
           '& > :not(style)': { m: 1, width: '100%' },
-          display: 'flex', alignItems: 'center', justifyContent: 'center'
+          width: '100%'
         }}
         onSubmit={handleSubmit}
       >
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Grid item xs={2} sm={4} md={4}>
             <Item>
               <FormGroup>
@@ -193,7 +195,7 @@ const Form: React.FC<IFormProps> = ({
               <FormGroup>
                 {!view ? (
                   <Button
-                    sx={{ my: 2, color: 'white', display: 'block' }}
+                    sx={{ my: 2, color: 'black', display: 'block' }}
                     type='submit'
                   >
                     {edit ? 'Edit Contact' : 'Create Contact'}

@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useEffect } from "react";
+import Router from 'next/router';
 import { formatDistanceToNow } from 'date-fns';
 import { es } from 'date-fns/locale';
 import Link from "next/link";
@@ -9,15 +10,21 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useSelector, useDispatch } from 'react-redux';
 import Contact from '../../entities/Contact';
-import Trabajador from '../../assets/img/trabajador.png';
+import { eraseContact } from '../../redux/actions/contact';
 
 export interface ICardContactProps {
   contact: Contact;
 }
 
 const CardContact: React.FC<ICardContactProps> = ({ contact }) => {
-  const { id, firstName, lastName, email, phone, createdAt, updatedAt } = contact;
+
+  const dispatch = useDispatch();
+  if (!contact) {
+    return null;
+  }
+  const { id, firstName, lastName, email, phone, createdAt, updatedAt }: any = contact;
 
   return (
     <Card
@@ -55,6 +62,10 @@ const CardContact: React.FC<ICardContactProps> = ({ contact }) => {
         <Link href={"contacts/[id]"} as={`contacts/${id}`}>
           <Button size="small">Learn More</Button>
         </Link>
+        <Link href={"contacts/edit/[id]"} as={`contacts/edit/${id}`}>
+          <Button size="small">Edit</Button>
+        </Link>
+        <Button size="small" onClick={async () => dispatch<any>(eraseContact(id))}>Delete</Button>
       </CardActions>
     </Card>
   );

@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import Coworker from '../../assets/img/trabajador.png';
+import Skeleton from '@mui/material/Skeleton';
 import Layout from "../../Layout";
 import useContact from "../../hooks/useContact";
 import firebase from "../../firebase";
@@ -32,15 +32,23 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Contacts: React.FC<IContactProps> = ({ id }) => {
-  const [ contact ]: any = useContact(id);
+  const [ contact, loading ]: any = useContact(id);
   if (!contact) return null;
   const { firstName, lastName, email, phone, createdAt, updatedAt } = contact;
-  console.log('🚀 ~ file: [id].tsx ~ line 38 ~ createdAt', contact, createdAt, updatedAt)
   
   return (
     <Layout>
-      <Grid item xs={2} sm={4} md={4} key={contact.id}>
+      <Grid item xs={2} sm={4} md={4}>
         <Item>
+          {loading && (
+            <Grid item xs={12} sm={12} md={12}>
+              <Item>
+                <Skeleton width="100%" height="100%" animation="wave" variant="rectangular">
+                  <div style={{ paddingTop: '57%' }} />
+                </Skeleton>
+              </Item>
+            </Grid>
+          )}
           <Card
             sx={{
               justifyContent: 'center',

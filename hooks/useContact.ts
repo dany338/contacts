@@ -6,20 +6,20 @@ import useEffectOnce from './useEffectOnce';
 
 const useContact = (id: string) => {
   const dispatch = useDispatch();
-  // const [myContact, setMyContact] = useState(contact);
+  const [ loading, setLoading ] = useState<boolean>(false);
   const { contact: { contact } }: any = useSelector((state) => state);
   const fetchContact = async () => {
-    console.log('🚀 ~ file: contact.ts ~ line 29 ~ return ~ fetchContact', id);
+    setLoading(true);
     await dispatch<any>(obtainContact(id));
+    setLoading(false);
   };
 
   useEffectOnce(() => {
-    console.log('my effect is running');
     fetchContact();
     return () => console.log('my effect is destroying');
   });
 
-  return [ contact ];
+  return [ contact, loading ];
 };
 
 export default useContact;

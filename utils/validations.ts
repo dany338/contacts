@@ -20,7 +20,7 @@ export const validateCreateContact = (valores: any) => {
   validateFirstName(valores.firstName, errores);
   validateLastName(valores.lastName, errores);
   validateEmail(valores.email, errores);
-  validatePhone(valores.descripcion, errores);
+  validatePhone(valores.phone, errores);
 
   return errores;
 };
@@ -81,7 +81,7 @@ const validatePhone = (phone: any, errores: any) => {
     errores.phone = 'The phone is required';
   } else {
     if (!/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(phone)) {
-      errores.url = 'The phone is invalid!';
+      errores.phone = 'The phone is invalid!';
     }
   }
 };

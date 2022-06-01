@@ -22,6 +22,7 @@ const useValidation = (intialState: any, validar: any, fn: any) => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    console.log('🚀 ~ file: entro');
     const erroresValidacion = validar(valores);
     setErrores(erroresValidacion);
     setSolicitud(true);

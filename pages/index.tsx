@@ -9,6 +9,7 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import Skeleton from '@mui/material/Skeleton';
 import Layout from '../Layout';
 import CardContact from '../components/CardContact';
 import Paginate from '../components/Paginate';
@@ -29,41 +30,35 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Home: React.FC<IHomeProps> = () => {
-  const [ contacts, loading, handleChangePage, paginates ] = useContacts();
-  // const { contact: { deleteOk, contacts } }: any = useSelector((state) => state);
-
-  // useEffect(() => {
-  //   if (deleteOk) {
-  //     Router.push("/");
-  //   }
-  // }, [deleteOk]);
-  // useEffect(() => {
-  //   console.log("contactos: ", contactos);
-  // }, [contactos]);
+  const [ contacts, loading, handleChangePage, paginates, deleteOk ] = useContacts();
+  if (!contacts) {
+    return null;
+  }
 
   return (
     <Layout>
       <Box sx={{ flexGrow: 1 }}>
-        <Paginate
-          contacts={contacts}
-          handleChangePage={handleChangePage}
-          paginates={paginates}
-        />
+        {contacts?.results &&
+          <Paginate
+            contacts={contacts}
+            handleChangePage={handleChangePage}
+            paginates={paginates}
+          />
+        }
         <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-          {loading && (
-            <LoadingButton
-              loading
-              loadingPosition="start"
-              startIcon={<SaveIcon />}
-              variant="outlined"
-            >
-              Save 
-            </LoadingButton>
-          )}
-          {contacts.results && contacts.results.map((contact: Contact) => (
+          {loading && [...Array(10)].map((item) =>  (
+            <Grid item xs={2} sm={4} md={4} key={item}>
+              <Item>
+                <Skeleton width="100%" height="100%" animation="wave" variant="rectangular" >
+                  <div style={{ paddingTop: '57%' }} />
+                </Skeleton>
+              </Item>
+            </Grid>
+          ))}
+          {contacts?.results && contacts.results.map((contact: Contact) => (
             <Grid item xs={2} sm={4} md={4} key={contact.id}>
               <Item>
-                <CardContact key={contact.id} contact={contact} />
+                <CardContact contact={contact} />
               </Item>
             </Grid>
           ))}

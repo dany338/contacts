@@ -18,6 +18,7 @@ export interface IContactCreate {
 }
 
 class Contact implements IContact {
+  [x: string]: any;
   _id: string | null;
   firstName: string;
   lastName: string;
@@ -46,7 +47,7 @@ export interface IContactResults {
   perPage: number;
   currentPage: number;
   totalPages: number;
-  results: Contact;
+  results: Contact[];
 }
 
 export interface IPagination {

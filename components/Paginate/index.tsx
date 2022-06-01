@@ -12,12 +12,6 @@ export interface IPaginationProps {
 }
 
 const Paginate: React.FC<IPaginationProps> = ({ contacts, handleChangePage, paginates }) => {
-  const [currentPage, setCurrentPage] = useState(contacts.currentPage || 1);
-
-  useEffect(() => {
-    console.log("currentPage: ", currentPage);
-  }, [currentPage]);
-
   return (
     <Grid
       container
@@ -37,9 +31,9 @@ const Paginate: React.FC<IPaginationProps> = ({ contacts, handleChangePage, pagi
         }}
       >
         <Pagination
-          count={contacts.totalPages}
-          defaultPage={paginates.currentPage}
-          page={paginates.currentPage}
+          count={contacts.totalPages ?? 0}
+          defaultPage={paginates.currentPage ?? 1}
+          page={paginates.currentPage ?? 1}
           color="primary"
           size="large"
           showFirstButton
